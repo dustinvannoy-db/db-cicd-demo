@@ -20,7 +20,3 @@ spark = get_spark_session()
 df = pyspark_functions.create_sample_dataframe(spark)
 updated_df = df.withColumn("created_date", fn.current_date())
 updated_df.show()
-
-import sys
-# sys.path.append('.')
-print(sys.path)
