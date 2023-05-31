@@ -18,7 +18,7 @@ def spark_session():
             from databricks.sdk.core import Config
             config = Config(profile=db_profile, cluster_id=db_cluster)
             return DatabricksSession.builder.sdkConfig(config).getOrCreate()
-        except ModuleNotFoundError:
+        except (ModuleNotFoundError, ValueError):
             from pyspark.sql import SparkSession
             return SparkSession.builder.getOrCreate()
 def test_create_sample_dataframe_valid_df(spark_session):
