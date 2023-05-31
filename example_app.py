@@ -1,5 +1,5 @@
-from pyspark.sql import DataFrame, SparkSession, functions as fn
-from example_library.my_library import pyspark_functions
+from pyspark.sql import functions as fn
+from my_library import pyspark_functions
 import os
 
 def get_spark_session():

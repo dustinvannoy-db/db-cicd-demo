@@ -1,5 +1,4 @@
 import pytest
-import os
 
 import sys
 # sys.path.append('.')
@@ -13,7 +12,8 @@ print(sys.path)
 # except:
 #     pass
 
-from example_library.my_library import misc_functions
+from my_library import misc_functions
+
 
 def test_lookup_key_valid():
     assert misc_functions.id_lookup('person1') == 111
