@@ -60,7 +60,7 @@ environments:
         job_cluster_key: "basic-cluster"
         max_retries: 0
         notebook_task:
-          notebook_path: "/Repos/dustin.vannoy@databricks.com/db-cicd-demo/example_app"
+          notebook_path: "/Repos/dustin.vannoy@databricks.com/db-cicd-demo/example_notebook"
         instance-profile: instance-profile://one-env-databricks-access
 
 
