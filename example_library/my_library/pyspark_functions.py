@@ -1,6 +1,7 @@
-# from databricks.sdk.runtime import *
+from databricks.sdk.runtime import *
 from pyspark.sql.functions import concat
 import os
+
 
 def create_sample_dataframe(spark):
     df = spark.createDataFrame([["test1", 1],["test2", 2]])
