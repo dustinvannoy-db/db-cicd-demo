@@ -16,6 +16,7 @@ def databricks_list_files(dbutils):
 
 def get_spark_session():
     if os.getenv("DATABRICKS_RUNTIME_VERSION") is not None:
+        from pyspark.sql import SparkSession
         return SparkSession.builder.getOrCreate()
     else:
         try:

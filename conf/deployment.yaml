@@ -1,0 +1,69 @@
+build:
+  no_build: true
+
+custom:
+  basic-cluster-props: &basic-cluster-props
+    spark_version: "13.0.x-scala2.12"
+    node_type_id: "i3.xlarge"
+    policy_id: "E05E27B13F0003A0"
+    autoscale:
+      min_workers: 1
+      max_workers: 2
+
+  basic-static-cluster: &basic-static-cluster
+    new_cluster:
+      <<: *basic-cluster-props
+      num_workers: 2
+
+  dev-cluster-spec: &dev-cluster-spec
+    spark_version: "13.0.x-scala2.12"
+    node_type_id: "i3.xlarge"
+    policy_id: "E05E27B13F0003A0"
+    autoscale:
+      min_workers: 1
+      max_workers: 2
+
+  dev-cluster-config: &dev-cluster-config
+    new_cluster:
+      << *dev-cluster-spec
+
+environments:
+  default:
+    workflows:
+    - name: "db-cicd-demo-example"
+      tags: 
+        env: "development"
+        team: "data-eng"
+
+      job_clusters:
+      - job_cluster_key: "basic-cluster"
+        <<: *basic-static-cluster
+
+      tasks:
+      - task_key: "your-task-01"
+        job_cluster_key: "basic-cluster"
+        max_retries: 0
+        notebook_task:
+          notebook_path: "/Repos/dustin.vannoy@databricks.com/db-cicd-demo/example_app"
+        instance-profile: instance-profile://shard-demo-s3-access
+  prod:
+    workflows:
+    - name: "prod-db-cicd-demo-example"
+      tags: 
+        env: "production"
+        team: "data-eng"
+
+      job_clusters:
+      - job_cluster_key: "basic-cluster"
+        <<: *basic-static-cluster
+
+      tasks:
+      - task_key: "your-task-01"
+        job_cluster_key: "basic-cluster"
+        max_retries: 0
+        notebook_task:
+          notebook_path: "/Repos/dustin.vannoy@databricks.com/db-cicd-demo/example_app"
+        instance-profile: instance-profile://shard-demo-s3-access
+
+
+          

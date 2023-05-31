@@ -1,12 +1,5 @@
 import pytest
 import os
-import sys
-print(sys.path)
-
-# currentdir = os.path.dirname(__file__)
-# parentdir = os.path.dirname(currentdir)
-# print(parentdir)
-# sys.path.insert(0,parentdir)
 
 from my_library import pyspark_functions
 
