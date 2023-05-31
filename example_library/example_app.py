@@ -1,5 +1,5 @@
 from pyspark.sql import DataFrame, SparkSession, functions as fn
-from my_library import pyspark_functions
+from example_library.my_library import pyspark_functions
 import os
 
 def get_spark_session():
@@ -20,3 +20,7 @@ spark = get_spark_session()
 df = pyspark_functions.create_sample_dataframe(spark)
 updated_df = df.withColumn("created_date", fn.current_date())
 updated_df.show()
+
+import sys
+# sys.path.append('.')
+print(sys.path)
