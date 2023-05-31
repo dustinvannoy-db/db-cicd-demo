@@ -1,6 +1,4 @@
-from databricks.sdk.runtime import *
 from pyspark.sql.functions import concat
-from pyspark.sql import SparkSession
 import os
 
 
@@ -17,6 +15,7 @@ def databricks_list_files(dbutils):
 
 def get_spark_session():
     if os.getenv("DATABRICKS_RUNTIME_VERSION") is not None:
+        from databricks.sdk.runtime import *
         return SparkSession.builder.getOrCreate()
     else:
         try:
@@ -27,4 +26,5 @@ def get_spark_session():
             config = Config(profile=db_profile, cluster_id=db_cluster)
             return DatabricksSession.builder.sdkConfig(config).getOrCreate()
         except ModuleNotFoundError:
+            from pyspark.sql import SparkSession
             return SparkSession.builder.getOrCreate()
