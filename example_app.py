@@ -18,5 +18,7 @@ def get_spark_session():
 
 spark = get_spark_session()
 df = pyspark_functions.create_sample_dataframe(spark)
-updated_df = df.withColumn("created_date", fn.current_date())
+tmp_df = df.withColumn("created_date", fn.current_date())
+updated_df = tmp_df.withColumn("person", fn.lit("Person1"))
 updated_df.show()
+
