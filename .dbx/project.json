@@ -1,0 +1,23 @@
+{
+    "environments": {
+        "default": {
+            "profile": "e2-demo",
+            "storage_type": "mlflow",
+            "properties": {
+                "workspace_directory": "/Users/dustin.vannoy@databricks.com/dbx/projects/db-cicd-demo",
+                "artifact_location": "dbfs:/Users/dustin.vannoy@databricks.com/dbx"
+            }
+        },
+        "prod": {
+            "profile": "e2-demo",
+            "storage_type": "mlflow",
+            "properties": {
+                "workspace_directory": "/Users/dustin.vannoy@databricks.com/dbx/projects/db-cicd-demo",
+                "artifact_location": "dbfs:/Users/dustin.vannoy@databricks.com/dbx"
+            }
+        }
+    },
+    "inplace_jinja_support": false,
+    "failsafe_cluster_reuse_with_assets": false,
+    "context_based_upload_for_execute": true
+}
