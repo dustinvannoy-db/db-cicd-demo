@@ -20,7 +20,7 @@ def spark_session():
             return DatabricksSession.builder.sdkConfig(config).getOrCreate()
         except (ModuleNotFoundError, ValueError):
             from pyspark.sql import SparkSession
-            return SparkSession.builder.getOrCreate()
+            return SparkSession.builder.master("local[*]").getOrCreate()
 def test_create_sample_dataframe_valid_df(spark_session):
     return_df = pyspark_functions.create_sample_dataframe(spark_session)
     assert return_df.count() == 2
