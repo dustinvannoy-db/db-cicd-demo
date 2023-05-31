@@ -1,12 +1,5 @@
 import pytest
 import os
-from pyspark.sql import DataFrame
-
-import sys
-currentdir = os.path.dirname(__file__)
-parentdir = os.path.dirname(currentdir)
-print(parentdir)
-sys.path.insert(0,parentdir)
 
 from my_library import pyspark_functions
 
@@ -25,9 +18,9 @@ def spark_session():
             from databricks.sdk.core import Config
             config = Config(profile=db_profile, cluster_id=db_cluster)
             return DatabricksSession.builder.sdkConfig(config).getOrCreate()
-        except ModuleNotFoundError:
+        except (ModuleNotFoundError, ValueError):
             from pyspark.sql import SparkSession
-            return SparkSession.builder.getOrCreate()
+            return SparkSession.builder.master("local[*]").getOrCreate()
 def test_create_sample_dataframe_valid_df(spark_session):
     return_df = pyspark_functions.create_sample_dataframe(spark_session)
     assert return_df.count() == 2
@@ -37,4 +30,3 @@ def test_create_sample_dataframe_valid_df(spark_session):
 if __name__ == "__main__":
     # test_create_sample_dataframe_valid_df()
     print(pytest.main(["-p", "no:cacheprovider"]))
-    
