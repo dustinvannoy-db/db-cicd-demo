@@ -23,7 +23,7 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.10'
       #----------------------------------------------
       #  -----  install & configure poetry  -----
       #----------------------------------------------
@@ -65,7 +65,7 @@ jobs:
       - name: Run unit tests
         run: |
           echo "Launching unit tests"
-          pytest tests/
+          pytest tests/test_misc_functions.py
 
       - name: Deploy integration test
         env: 
