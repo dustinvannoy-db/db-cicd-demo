@@ -4,6 +4,7 @@ from pyspark.sql import DataFrame
 
 import sys
 sys.path.append('.')
+print(sys.path)
 # currentdir = os.path.dirname(__file__)
 # parentdir = os.path.dirname(currentdir)
 # print(parentdir)
