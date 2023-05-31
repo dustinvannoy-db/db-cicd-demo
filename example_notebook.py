@@ -6,6 +6,7 @@ from my_library import pyspark_functions, misc_functions
 
 import os
 os.getenv("DATABRICKS_RUNTIME_VERSION")
+print("all good")
 
 # COMMAND ----------
 
