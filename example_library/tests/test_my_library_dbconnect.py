@@ -3,10 +3,11 @@ import os
 from pyspark.sql import DataFrame
 
 import sys
-currentdir = os.path.dirname(__file__)
-parentdir = os.path.dirname(currentdir)
-print(parentdir)
-sys.path.insert(0,parentdir)
+sys.path.append('.')
+# currentdir = os.path.dirname(__file__)
+# parentdir = os.path.dirname(currentdir)
+# print(parentdir)
+# sys.path.insert(0,parentdir)
 
 from my_library import pyspark_functions
 
