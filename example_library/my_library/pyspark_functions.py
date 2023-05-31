@@ -11,3 +11,16 @@ def databricks_list_files(dbutils):
     files = dbutils.fs.ls("dbfs:/Users/dustin.vannoy@databricks.com/field_demos")
     for f in files:
         print(f)
+
+def get_spark_session():
+    if os.getenv("DATABRICKS_RUNTIME_VERSION") is not None:
+        return spark
+    else:
+        try:
+            from databricks.connect import DatabricksSession
+            from databricks.sdk.core import Config
+            config = Config(profile=db_profile, cluster_id=db_cluster)
+            return DatabricksSession.builder.sdkConfig(config).getOrCreate()
+        except ModuleNotFoundError:
+            from pyspark.sql import SparkSession
+            return SparkSession.builder.getOrCreate()
