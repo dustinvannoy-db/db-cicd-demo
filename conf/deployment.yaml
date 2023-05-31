@@ -38,12 +38,12 @@ environments:
         <<: *basic-static-cluster
 
       tasks:
-      - task_key: "your-task-01"
+      - task_key: "test-task-1"
         job_cluster_key: "basic-cluster"
         max_retries: 0
         notebook_task:
           notebook_path: "/Repos/dustin.vannoy@databricks.com/db-cicd-demo/example_notebook"
-        instance-profile: instance-profile://one-env-databricks-access
+          
   prod:
     workflows:
     - name: "prod-db-cicd-demo-example"
@@ -60,8 +60,4 @@ environments:
         job_cluster_key: "basic-cluster"
         max_retries: 0
         notebook_task:
-          notebook_path: "/Repos/dustin.vannoy@databricks.com/db-cicd-demo/example_notebook"
-        instance-profile: instance-profile://one-env-databricks-access
-
-
-          
+          notebook_path: "/Repos/dustin.vannoy@databricks.com/db-cicd-demo/example_notebook"          
